@@ -1,6 +1,6 @@
 # ShopFlow Analytics Pipeline
 
-> End-to-end automated e-commerce analytics pipeline — from raw data generation to a self-updating Power BI dashboard. Zero manual steps.
+> End-to-end automated e-commerce analytics pipeline - from raw data generation to a self-updating Power BI dashboard. Zero manual steps.
 
 ---
 
@@ -76,13 +76,13 @@ REST API / Data Generator
 - Power BI Desktop (free)
 - GitHub account
 
-### Step 1 — Google Cloud Setup
+### Step 1 - Google Cloud Setup
 1. Create a new project at [console.cloud.google.com](https://console.cloud.google.com)
 2. Enable the **BigQuery API**
 3. Create a **Service Account** → download the JSON key
 4. Grant the service account `BigQuery Admin` role
 
-### Step 2 — Local Setup
+### Step 2 - Local Setup
 ```bash
 git clone https://github.com/YOUR_USERNAME/shopflow-analytics.git
 cd shopflow-analytics
@@ -93,13 +93,13 @@ cp .env.template .env
 # Edit .env → add your GCP_PROJECT_ID
 ```
 
-### Step 3 — Run the Initial Historical Load
+### Step 3 - Run the Initial Historical Load
 ```bash
 python ingestion/generate_and_load.py --mode full
 ```
 This generates 2 years of e-commerce history and loads it into BigQuery.
 
-### Step 4 — Configure dbt
+### Step 4 - Configure dbt
 ```bash
 cp dbt_project/profiles.yml.template ~/.dbt/profiles.yml
 # Edit profiles.yml → add your GCP_PROJECT_ID and keyfile path
@@ -110,7 +110,7 @@ dbt run
 dbt test
 ```
 
-### Step 5 — GitHub Actions Automation
+### Step 5 - GitHub Actions Automation
 1. Push code to GitHub
 2. Go to **Settings → Secrets and Variables → Actions**
 3. Add two secrets:
@@ -118,7 +118,7 @@ dbt test
    - `GCP_SERVICE_ACCOUNT_KEY` → paste the entire JSON key file content
 4. The pipeline will now run automatically every day at 06:00 UTC
 
-### Step 6 — Connect Power BI
+### Step 6 - Connect Power BI
 1. Open Power BI Desktop
 2. **Get Data → Google BigQuery**
 3. Sign in with your Google account
@@ -131,10 +131,10 @@ dbt test
 ## Data Quality
 
 dbt runs automated tests on every layer:
-- **Uniqueness** — no duplicate IDs
-- **Not-null** — required fields always present
-- **Accepted values** — status fields match expected enums
-- **Range checks** — no negative revenues or impossible margins
+- **Uniqueness** - no duplicate IDs
+- **Not-null** - required fields always present
+- **Accepted values** - status fields match expected enums
+- **Range checks** - no negative revenues or impossible margins
 
 If any test fails, the GitHub Actions pipeline fails loudly and no bad data reaches the dashboard.
 
@@ -170,5 +170,5 @@ shopflow-analytics/
 
 ## Author
 
-**Segun Bakare** — Analytics Engineer
+**Segun Bakare** - Analytics Engineer
 [Portfolio](https://shegszz.github.io) · [LinkedIn](https://linkedin.com/in/segun-bakare-d) · [GitHub](https://github.com/Shegszz)
