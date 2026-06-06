@@ -1,0 +1,98 @@
+version: 2
+
+sources:
+  - name: shopflow_raw
+    database: shopflow-analytics
+    schema: shopflow_raw
+    tables:
+      - name: raw_orders
+        columns:
+          - name: order_id
+            tests: [unique, not_null]
+          - name: customer_id
+            tests: [not_null]
+          - name: order_date
+            tests: [not_null]
+          - name: order_status
+            tests:
+              - accepted_values:
+                  values: ["completed", "returned", "cancelled"]
+      - name: raw_customers
+        columns:
+          - name: customer_id
+            tests: [unique, not_null]
+          - name: email
+            tests: [unique, not_null]
+      - name: raw_products
+        columns:
+          - name: product_id
+            tests: [unique, not_null]
+          - name: selling_price
+            tests: [not_null]
+      - name: raw_order_items
+        columns:
+          - name: order_item_id
+            tests: [unique, not_null]
+          - name: order_id
+            tests: [not_null]
+          - name: product_id
+            tests: [not_null]
+
+models:
+  - name: stg_orders
+    columns:
+      - name: order_id
+        tests: [unique, not_null]
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ["completed", "returned", "cancelled"]
+      - name: order_total
+        tests: [not_null]
+
+  - name: stg_customers
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+
+  - name: stg_products
+    columns:
+      - name: product_id
+        tests: [unique, not_null]
+      - name: gross_margin_pct
+        tests: [not_null]
+
+  - name: stg_order_items
+    columns:
+      - name: order_item_id
+        tests: [unique, not_null]
+
+  - name: mart_daily_revenue
+    columns:
+      - name: order_date
+        tests: [unique, not_null]
+      - name: gross_revenue
+        tests: [not_null]
+
+  - name: mart_product_performance
+    description: "Monthly product and category revenue, margin, and discount metrics."
+
+  - name: mart_customer_segments
+    columns:
+      - name: customer_id
+        tests: [unique, not_null]
+      - name: rfm_segment
+        tests:
+          - accepted_values:
+              values:
+                - Champions
+                - Loyal Customers
+                - Recent Customers
+                - Potential Loyalists
+                - At Risk
+                - Cant Lose Them
+                - Lost
+                - Needs Attention
+
+  - name: mart_regional_performance
+    description: "Revenue and order metrics by US state and month."
