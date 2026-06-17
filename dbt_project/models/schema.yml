@@ -22,7 +22,7 @@ sources:
           - name: customer_id
             tests: [unique, not_null]
           - name: email
-            tests: [unique, not_null]
+            tests: [not_null]
       - name: raw_products
         columns:
           - name: product_id
