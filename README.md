@@ -54,6 +54,19 @@ REST API / Data Generator
 | Customer Segments | RFM segmentation, Champions vs At Risk vs Lost |
 | Regional Analysis | Revenue by US state, avg order value by geography |
 
+## Dashboard Preview
+
+### Revenue Overview
+![Revenue Overview](reports/revenue_overview.png)
+
+### Commercial Performance
+![Commercial Performance](reports/commercial_performance.png)
+
+### Customer Intelligence
+![Customer Intelligence](reports/customer_intelligence.png)
+
+### Regional Analysis
+![Regional Analysis](reports/regional_analysis.png)
 ---
 
 ## Tech Stack
