@@ -42,6 +42,14 @@ REST API / Data Generator
         ▼
   GitHub Actions           ← Orchestrates everything, daily at 06:00 UTC
 ```
+---
+## Live Pipeline Output
+
+### BigQuery dataset Overview
+![BigQuery dataset Overview](reports/bigquery_dataset_overview.png)
+
+### Mart Daily Revenue Preview
+![Mart Daily Revenue Preview](reports/mart_daily_revenue_preview.png)
 
 ---
 
